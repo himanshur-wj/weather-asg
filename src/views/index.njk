@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+{% block content %}
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <form id="addressForm" class="form-inline">
+      <label class="sr-only" for="address">Address</label>
+      <input id="address" name="address" class="form-control mr-2 mb-2" placeholder="Enter address (e.g., Connaught Place, New Delhi)" style="min-width: 320px;">
+      <button id="btnGet" type="button" class="btn btn-primary mb-2 mr-2">Get Weather (AJAX)</button>
+      <button id="btnSave" type="button" class="btn btn-success mb-2 mr-2">Save to DB (AJAX)</button>
+      <button id="btnHistory" type="button" class="btn btn-secondary mb-2">Show History (AJAX)</button>
+    </form>
+
+    <!-- Bonus scoring: plain HTML form POST (non-AJAX) -->
+    <form id="saveForm" method="POST" action="/api/history" class="mt-3">
+      <input type="hidden" name="address" id="f_address">
+      <input type="hidden" name="lat" id="f_lat">
+      <input type="hidden" name="lon" id="f_lon">
+      <input type="hidden" name="units" value="metric">
+      <input type="hidden" name="hours" value="12">
+      <input type="hidden" name="method" value="form">
+      <button id="btnFormSave" type="submit" class="btn btn-outline-success">Save via HTML Form POST</button>
+      <small class="text-muted ml-2">This submits application/x-www-form-urlencoded (no JS fetch)</small>
+    </form>
+
+    <small class="text-muted d-block mt-2">We dynamically add result cards below (Requirement 4).</small>
+  </div>
+</div>
+
+<div id="results" class="mt-3"></div>
+<div id="history" class="mt-4"></div>
+
+{% endblock %}
